@@ -1,0 +1,17 @@
+{% extends "base.html" %} 
+{% block title %}Register{% endblock title %}
+{% block body %}
+
+<div class="container px-5 py-24 mx-auto flex items-center justify-center">
+  <div class="w-full max-w-md">
+      <h2 class="text-3xl text-center mb-4">Customer Login</h2>
+      <form action="{% url 'user-register' %}" method="POST" novalidate>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value = "Register" class="text-white bg-indigo-500 border-0 my-4 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-center">
+      </form>
+  </div>
+</div>
+
+  
+{% endblock body %}

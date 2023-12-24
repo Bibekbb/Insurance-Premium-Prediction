@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Prediction{% endblock title %}Home
+{% block body %}
+<section class="text-gray-600 body-font -my-9">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Predict Your Insurance Prediction</h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Unlocking Tomorrow's Security: Insurance Prediction Excellence</p>
+      </div>
+      <br><h2><b>
+        <h5 class="text text-black-tie text-center my-5">Your Prediction amount is: Rs {{ output|join:" "|floatformat:3 }}</h5>
+        {% if output %}
+        <h5 class = "text-success text-center"> </h5>
+        {% else %}
+        {% endif %}
+      </b></h2>
+      <form action="http://127.0.0.1:8000/predict/" method = "POST">
+        {% csrf_token %}
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+              <label for="full-name" class="leading-7 text-sm text-gray-600">Enter the age</label>
+              <input type="text" id="age" name="age" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-full">
+              <label class="leading-7 text-sm text-gray-600">Enter the sex (Male/Female)</label>
+              <div class="flex mt-1">
+                <div class="mr-4">
+                  <input type="radio" id="male" name="sex" value="1" class="form-radio">
+                  <label for="male" class="ml-2 text-sm text-gray-600">Male</label>
+                </div>
+                <div>
+                  <input type="radio" id="female" name="sex" value="0" class="form-radio">
+                  <label for="female" class="ml-2 text-sm text-gray-600">Female</label>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+            <div class="relative flex-grow w-full">
+              <label for="full-name" class="leading-7 text-sm text-gray-600">Enter BMI</label>
+              <input type="text" id="bmi" name="bmi" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative flex-grow w-full">
+              <label for="email" class="leading-7 text-sm text-gray-600">Enter the no of children</label>
+              <input type="text" id="children" name="children" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+        </div>
+        <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+          <div class="relative flex-grow w-full">
+            <label class="leading-7 text-sm text-gray-600">Are you a smoker?</label>
+            <div class="flex mt-1">
+              <div class="mr-4">
+                <input type="radio" id="smoker-yes" name="smoker" value="1" class="form-radio">
+                <label for="smoker-yes" class="ml-2 text-sm text-gray-600">Yes</label>
+              </div>
+              <div>
+                <input type="radio" id="smoker-no" name="smoker" value="0" class="form-radio">
+                <label for="smoker-no" class="ml-2 text-sm text-gray-600">No</label>
+              </div>
+            </div>
+            
+          </div>
+            <div class="relative flex-grow w-full">
+              <label for="email" class="leading-7 text-sm text-gray-600">Select your Region</label>
+              <select id="region" name="region" class="form-select" aria-label="Default select example">
+                <option selected>Open this select your region</option>
+                <option value="1">SouthWest</option>
+                <option value="2">SouthEast</option>
+                <option value="3">NothWest</option>
+                <option value="3">NothEast</option>
+              </select>
+             </div>
+        </div>
+        <div class="text text-center my-4"><button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Predict</button></div>
+        
+      </form>
+    </div>
+  </section>
+{% endblock body %}
